@@ -1,0 +1,43 @@
+export function coreSlots() {
+  return [
+    {
+      id: 1,
+      type: "Vibes",
+      city: "SF",
+      title: "Sunset Walk",
+      timeFilter: "Evening",
+      start: "18:00",
+      totalMins: 20,
+      totalSecs: 1200,
+      secsLeft: 600,
+      attendees: [],
+      max: 2,
+    },
+    {
+      id: 2,
+      type: "Friends",
+      city: "NYC",
+      title: "Coffee Chat",
+      timeFilter: "Afternoon",
+      start: "14:00",
+      totalMins: 30,
+      totalSecs: 1800,
+      secsLeft: 1200,
+      attendees: [],
+      max: 2,
+    },
+    {
+      id: 3,
+      type: "Workout",
+      city: "LA",
+      title: "Jog & Talk",
+      timeFilter: "Morning",
+      start: "09:00",
+      totalMins: 20,
+      totalSecs: 1200,
+      secsLeft: 500,
+      attendees: [],
+      max: 2,
+    },
+  ];
+}
