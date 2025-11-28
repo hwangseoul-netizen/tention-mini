@@ -1,0 +1,62 @@
+/* app/globals.css */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/* 공통 리셋 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 바깥 배경 (노트북 전체) */
+body {
+  background: #000;          /* 바깥은 완전 블랙 */
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  display: flex;
+  justify-content: center;   /* 가운데 정렬 */
+}
+
+/* 여기부터가 ‘폰 화면 프레임’ */
+.app-shell {
+  width: 100%;
+  max-width: 430px;          /* iPhone 14 Pro 정도 폭 */
+  min-height: 100vh;
+  background: #0d0f13;       /* 우리가 쓰는 메인 배경 */
+  overflow-x: hidden;
+}
+
+/* 옵션: 스크롤바 살짝 얇게 */
+.app-shell::-webkit-scrollbar {
+  width: 6px;
+}
+.app-shell::-webkit-scrollbar-thumb {
+  background: #292f3a;
+  border-radius: 3px;
+}
