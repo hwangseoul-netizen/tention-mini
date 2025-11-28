@@ -5,12 +5,15 @@
 
 "use client";
 
-import React, {
-  useEffect,
+import React,
+
+{
+ useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
+import CategoryRow from "./components/CategoryRow";
 
 /* =========================
    Telegram WebApp bootstrap
@@ -175,10 +178,12 @@ const minTo24 = (mins: number) =>
 function minTo12(mins: number) {
   const H24 = Math.floor(mins / 60) % 24;
   const M = mins % 60;
-  const mer = (H24 >= 12 ? "PM" : "AM") as const;
+  const mer: "AM" | "PM" = H24 >= 12 ? "PM" : "AM";
   const h = ((H24 + 11) % 12) + 1;
   return { text: `${two(h)}:${two(M)}`, mer };
 }
+
+
 function guessTimeBucketFromMin(mins: number): (typeof TIME_SLOTS)[number] {
   const h = Math.floor(mins / 60) % 24;
   if (h < 12 && h >= 5) return "Morning";
@@ -984,49 +989,6 @@ function Stepper({
   );
 }
 
-function CategoryRow({
-  active,
-  onPick,
-}: {
-  active: CatKey | "";
-  onPick: (k: CatKey) => void;
-}) {
-  const gap = 8;
-  return (
-    <div
-      style={{
-        display: "flex",
-        gap,
-        marginBottom: 8,
-        padding: "0 12px",
-      }}
-    >
-      {CATS.map((c) => {
-        const on = active === c.key;
-        return (
-          <button
-            key={c.key}
-            onClick={() => onPick(c.key)}
-            style={{
-              ...S.catChipFixed,
-              borderColor: c.color,
-              flex: 1,
-              ...(on ? { backgroundColor: c.color + "22" } : {}),
-            }}
-          >
-            <span
-              style={{ ...S.catTextCenter, color: c.color } as any}
-              title={c.label}
-            >
-              {c.icon} {c.label}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function Card({
   slot,
   onDetails,
@@ -1663,8 +1625,7 @@ function CreateModal({
                     cat: c.key,
                     title: defaultTitleFor(c.key),
                     desc: descFor(c.key),
-                  }))
-                }
+                  }))}
                 style={{
                   ...S.formChip,
                   borderColor: c.color,
@@ -1690,8 +1651,7 @@ function CreateModal({
             <div style={{ flex: 1 }}>
               <button
                 onClick={() =>
-                  setForm((f: any) => ({ ...f, host: "I host" }))
-                }
+                  setForm((f: any) => ({ ...f, host: "I host" }))}
                 style={{
                   ...S.toggle,
                   ...(form.host === "I host" ? S.toggleOn : {}),
@@ -1715,8 +1675,7 @@ function CreateModal({
                   setForm((f: any) => ({
                     ...f,
                     host: "TENtion hosts",
-                  }))
-                }
+                  }))}
                 style={{
                   ...S.toggle,
                   ...(form.host === "TENtion hosts"
@@ -1759,8 +1718,7 @@ function CreateModal({
                 button="City"
                 value={cityName(form.city)}
                 onPress={() =>
-                  setForm((f: any) => ({ ...f, _cityPick: true }))
-                }
+                  setForm((f: any) => ({ ...f, _cityPick: true }))}
               />
             </Half>
             <Half>
@@ -1768,8 +1726,7 @@ function CreateModal({
                 button="Time"
                 value={form.timeFilter}
                 onPress={() =>
-                  setForm((f: any) => ({ ...f, _timePick: true }))
-                }
+                  setForm((f: any) => ({ ...f, _timePick: true }))}
               />
             </Half>
           </div>
@@ -1781,11 +1738,9 @@ function CreateModal({
                   ...f,
                   city: v,
                   _cityPick: false,
-                }))
-              }
+                }))}
               onClose={() =>
-                setForm((f: any) => ({ ...f, _cityPick: false }))
-              }
+                setForm((f: any) => ({ ...f, _cityPick: false }))}
             />
           )}
           {form._timePick && (
@@ -1796,11 +1751,9 @@ function CreateModal({
                   ...f,
                   timeFilter: v,
                   _timePick: false,
-                }))
-              }
+                }))}
               onClose={() =>
-                setForm((f: any) => ({ ...f, _timePick: false }))
-              }
+                setForm((f: any) => ({ ...f, _timePick: false }))}
             />
           )}
 
@@ -2023,8 +1976,7 @@ function CreateModal({
               setForm((f: any) => ({
                 ...f,
                 title: e.target.value,
-              }))
-            }
+              }))}
             style={S.input}
           />
 
@@ -2036,8 +1988,7 @@ function CreateModal({
               setForm((f: any) => ({
                 ...f,
                 desc: e.target.value,
-              }))
-            }
+              }))}
             style={{ ...S.input, minHeight: 90, maxHeight: 120 }}
           />
 
@@ -2053,8 +2004,7 @@ function CreateModal({
               onClick={() =>
                 alert(
                   "Meet in bright public places. Share your plan with a friend."
-                )
-              }
+                )}
             >
               <span style={S.secondaryText as any}>
                 Safety Tips
@@ -2150,8 +2100,7 @@ function MyScreen({
                     setProfile((p: any) => ({
                       ...p,
                       name: e.target.value,
-                    }))
-                  }
+                    }))}
                   style={S.input}
                 />
                 <textarea
@@ -2161,8 +2110,7 @@ function MyScreen({
                     setProfile((p: any) => ({
                       ...p,
                       bio: e.target.value,
-                    }))
-                  }
+                    }))}
                   style={{ ...S.input, minHeight: 70 }}
                 />
                 <input
@@ -2172,8 +2120,7 @@ function MyScreen({
                     setProfile((p: any) => ({
                       ...p,
                       avatar: e.target.value,
-                    }))
-                  }
+                    }))}
                   style={S.input}
                 />
               </div>
@@ -2246,8 +2193,7 @@ function MyScreen({
                   onClick={() =>
                     alert(
                       `${cityName(s.city)}\n${s.start} • ${s.totalMins} min`
-                    )
-                  }
+                    )}
                 >
                   <span style={S.outBtnT as any}>Details</span>
                 </button>
@@ -2365,6 +2311,7 @@ const S: Record<string, React.CSSProperties> & any = {
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
+    backgroundColor: "#151821",
   },
   catTextCenter: {
     fontWeight: 900,
